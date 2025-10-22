@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Git Flow Explained with Simple Analogies</title>
+    <style>
+        :root{font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial;line-height:1.5;color:#111;background:#f7f9fb}
+        body{max-width:900px;margin:32px auto;padding:24px;background:#fff;border-radius:10px;box-shadow:0 6px 24px rgba(20,30,40,0.08)}
+        h1{margin:0 0 10px;font-size:1.6rem}
+        p{margin:0 0 12px}
+        .section{margin:18px 0;padding:14px;border-left:4px solid #2b8aef;background:#fcfdff;border-radius:6px}
+        code{background:#eef6ff;padding:2px 6px;border-radius:4px;font-family:monospace}
+        pre{background:#0b1220;color:#dfefff;padding:12px;border-radius:6px;overflow:auto}
+        .analogy{font-weight:600}
+        ul{margin:8px 0 0 20px}
+        .note{font-size:.9rem;color:#555}
+        footer{margin-top:20px;font-size:.85rem;color:#666}
+    </style>
+</head>
+<body>
+    <h1>Git Flow — Simple Explanations & Analogies</h1>
+    <p class="note">Quick, practical explanations of core Git concepts with everyday analogies. Includes common commands.</p>
+
+    <div class="section">
+        <h2>1. What is a Git repository?</h2>
+        <p class="analogy">Analogy: A repository is like a kitchen or a workshop where you keep all your ingredients, tools and recipes.</p>
+        <p>It stores the entire history of your project, including snapshots of files and the timeline of changes.</p>
+    </div>
+
+    <div class="section">
+        <h2>2. git init — Start the kitchen</h2>
+        <p class="analogy">Analogy: <strong>git init</strong> is like opening a new kitchen or workshop and putting a label on the door: "This is the place we track work."</p>
+        <pre><code>git init</code></pre>
+        <p>It creates the hidden <code>.git</code> folder that will track changes.</p>
+    </div>
+
+    <div class="section">
+        <h2>3. git add — Put items in your basket</h2>
+        <p class="analogy">Analogy: You are shopping in the grocery store and put selected items into your basket. <code>git add</code> chooses which file changes will go into the next save.</p>
+        <pre><code>git add file.txt
+git add .      # stage all changed files</code></pre>
+        <p>Staging prepares a set of changes for the next commit.</p>
+    </div>
+
+    <div class="section">
+        <h2>4. git commit — Take a snapshot</h2>
+        <p class="analogy">Analogy: Commit is taking a photo of your kitchen state — what you have and how things are arranged — with a caption explaining why you took the photo.</p>
+        <pre><code>git commit -m "Describe what changed"</code></pre>
+        <p>Commits are the saved points in history you can return to or compare.</p>
+    </div>
+
+    <div class="section">
+        <h2>5. Branches — Parallel workspaces</h2>
+        <p class="analogy">Analogy: Branches are parallel worktables in the same kitchen. Each table lets someone try a different recipe without disturbing the main service.</p>
+        <ul>
+            <li><code>main</code> (or <code>master</code>) = the main menu / production-ready code</li>
+            <li>Feature branches = developer's separate table for a new feature</li>
+        </ul>
+        <pre><code>git branch          # list branches
+git checkout -b feat/login   # create & switch to a feature branch</code></pre>
+    </div>
+
+    <div class="section">
+        <h2>6. git merge / git rebase — Bring changes together</h2>
+        <p class="analogy">Merging: like taking the best dishes from one table and adding them to the main menu by combining events.</p>
+        <p>Rebasing: like replaying a sequence of steps from one table on top of the main table so the timeline looks linear.</p>
+        <pre><code>git checkout main
+git merge feat/login
+# or
+git checkout feat/login
+git rebase main</code></pre>
+    </div>
+
+    <div class="section">
+        <h2>7. Remote & Push/Pull — Share with the restaurant chain</h2>
+        <p class="analogy">A remote repository (like <code>origin</code>) is the central kitchen in the chain. Pushing sends your changes there; pulling brings others' changes to you.</p>
+        <pre><code>git remote add origin &lt;url&gt;
+git push origin feat/login
+git pull origin main</code></pre>
+    </div>
+
+    <div class="section">
+        <h2>8. Pull Request (PR) / Merge Request — Ask for review</h2>
+        <p class="analogy">Analogy: A pull request is like asking the head chef to taste and approve your new dish before it's added to the main menu. You present what you changed, why, and request feedback or approval.</p>
+        <ul>
+            <li>PR shows diffs, discussion, and automated tests.</li>
+            <li>After approval, the branch is merged into the main branch (the dish goes on the menu).</li>
+        </ul>
+        <p class="note">PRs typically happen on platforms like GitHub, GitLab or Bitbucket — the UI handles the conversation, reviews and merge button.</p>
+    </div>
+
+    <div class="section">
+        <h2>9. Quick workflow summary</h2>
+        <pre><code># initialize repository
+git init
+
+# create feature branch
+git checkout -b feat/your-feature
+
+# work: stage and commit often
+git add .
+git commit -m "Work in progress"
+
+# push to remote and open a PR for review
+git push -u origin feat/your-feature
+# open PR on hosting site, get review, then merge</code></pre>
+    </div>
+
+    <footer>
+        <p class="note">Keep commits small and descriptive. Use branches for isolated work. Use PRs for collaboration and review.</p>
+    </footer>
+</body>
+</html>
